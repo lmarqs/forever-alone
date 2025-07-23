@@ -26,6 +26,7 @@ void loop()
     {
         byte m = Serial.readBytesUntil('\n', buffer, sizeof(buffer) - 1);
         buffer[m] = '\0';
+        Serial.print("Received: ");
         Serial.println(buffer);
     }
 
