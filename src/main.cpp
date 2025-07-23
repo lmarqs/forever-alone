@@ -1,21 +1,33 @@
 #include "Arduino.h"
 
-#ifndef LED_BUILTIN
 #define LED_BUILTIN 8
-#endif
+
+static char buffer[20];
 
 void setup()
 {
-  pinMode(LED_BUILTIN, OUTPUT);
+    Serial.begin(9600);
+    pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop()
 {
-  digitalWrite(LED_BUILTIN, HIGH);
+    digitalWrite(LED_BUILTIN, HIGH);
+    
+    delay(1000);
+    
+    digitalWrite(LED_BUILTIN, LOW);
+    
+    delay(1000);
 
-  delay(1000);
+    byte n = Serial.available();
+    
+    if (n != 0)
+    {
+        byte m = Serial.readBytesUntil('\n', buffer, sizeof(buffer) - 1);
+        buffer[m] = '\0';
+        Serial.println(buffer);
+    }
 
-  digitalWrite(LED_BUILTIN, LOW);
-
-  delay(1000);
+    Serial.println("Hello");
 }
