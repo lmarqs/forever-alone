@@ -27,3 +27,28 @@ arduino-cli lib  update-index --config-file arduino-cli.yaml
 arduino-cli core install esp32-bluepad32:esp32 --config-file arduino-cli.yaml
 arduino-cli core install esp32:esp32 --config-file arduino-cli.yaml
 """
+
+[tasks."arduino:run"]
+depends = [
+  "arduino:compile",
+  "arduino:upload",
+  "arduino:monitor",
+]
+
+[tasks."arduino:compile"]
+run = """
+#!/usr/bin/env bash
+arduino-cli compile $SKETCH --build-path .arduino/build/$SKETCH --fqbn $FBQN --config-file arduino-cli.yaml
+"""
+
+[tasks."arduino:upload"]
+run = """
+#!/usr/bin/env bash
+arduino-cli upload $SKETCH --input-dir .arduino/build/$SKETCH --fqbn $FBQN --port $PORT --config-file arduino-cli.yaml
+"""
+
+[tasks."arduino:monitor"]
+run = """
+#!/usr/bin/env bash
+arduino-cli monitor --config baudrate=9600 --fqbn $FBQN --port $PORT --config-file arduino-cli.yaml
+"""
