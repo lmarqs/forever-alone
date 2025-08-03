@@ -1,0 +1,14 @@
+[settings]
+experimental = true
+idiomatic_version_file_enable_tools = ["python"]
+
+[env]
+_.python.venv = { path = ".venv", create = true }
+
+[tools]
+
+[tools."http:arduino-cli"]
+version = "1.2.2"
+
+[tools."http:arduino-cli".platforms]
+linux-x64 = { url = "https://github.com/arduino/arduino-cli/releases/download/v{version}/arduino-cli_{version}_Linux_64bit.tar.gz" }
