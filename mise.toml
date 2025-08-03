@@ -38,17 +38,17 @@ depends = [
 [tasks."arduino:compile"]
 run = """
 #!/usr/bin/env bash
-arduino-cli compile $SKETCH --build-path .arduino/build/$SKETCH --fqbn $FBQN --config-file arduino-cli.yaml
+arduino-cli compile --config-file arduino-cli.yaml
 """
 
 [tasks."arduino:upload"]
 run = """
 #!/usr/bin/env bash
-arduino-cli upload $SKETCH --input-dir .arduino/build/$SKETCH --fqbn $FBQN --port $PORT --config-file arduino-cli.yaml
+arduino-cli upload --config-file arduino-cli.yaml
 """
 
 [tasks."arduino:monitor"]
 run = """
 #!/usr/bin/env bash
-arduino-cli monitor --config baudrate=9600 --fqbn $FBQN --port $PORT --config-file arduino-cli.yaml
+arduino-cli monitor --config-file arduino-cli.yaml
 """
