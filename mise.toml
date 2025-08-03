@@ -16,6 +16,10 @@ linux-x64 = { url = "https://github.com/arduino/arduino-cli/releases/download/v{
 [tasks."setup"]
 run = """
 #!/usr/bin/env bash
+if [ ! -f "$FILE" ]; then
+  cp .env.example .env
+fi
+
 arduino-cli core update-index --config-file arduino-cli.yaml
 arduino-cli lib  update-index --config-file arduino-cli.yaml
 
