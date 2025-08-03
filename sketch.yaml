@@ -1,4 +1,5 @@
 default_profile: lolin_c3_mini
+
 profiles:
   lolin_c3_mini:
     fqbn: esp32-bluepad32:esp32:lolin_c3_mini
